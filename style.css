@@ -1,1 +1,356 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef3f7,
+            #dce5ec
+        );
+
+    color: #17212b;
+
+    min-height: 100vh;
+}
+
+
+/* Main page */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+}
+
+
+/* Main card */
+
+.card {
+    width: 100%;
+    max-width: 620px;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 42px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.12);
+
+    border:
+        1px solid #d9e0e6;
+
+    text-align: center;
+}
+
+
+/* Security heading */
+
+.security {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 8px;
+
+    color: #52616d;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 28px;
+}
+
+.lock {
+    font-size: 14px;
+}
+
+
+/* Medical-style icon */
+
+.icon {
+    width: 54px;
+    height: 54px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: #123b5d;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+    font-weight: 300;
+}
+
+
+/* Headings */
+
+h1 {
+    font-size: 28px;
+
+    color: #142c3d;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #687783;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* Divider */
+
+.divider {
+    height: 1px;
+
+    background: #e4e8ec;
+
+    margin: 30px 0;
+}
+
+
+/* Question */
+
+h2 {
+    font-size: 25px;
+
+    color: #182b3a;
+
+    margin-bottom: 12px;
+}
+
+.notice {
+    font-size: 14px;
+
+    color: #788590;
+
+    margin-bottom: 30px;
+}
+
+
+/* Buttons container */
+
+.buttons {
+    height: 150px;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* Common button */
+
+.answer {
+    width: 150px;
+
+    padding: 14px 20px;
+
+    border-radius: 7px;
+
+    border: none;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+
+    position: relative;
+}
+
+
+/* Yes */
+
+.yes {
+    background: #123b5d;
+
+    color: white;
+
+    box-shadow:
+        0 5px 15px rgba(18, 59, 93, 0.25);
+}
+
+.yes:hover {
+    background: #0d2d46;
+
+    transform: translateY(-2px);
+}
+
+
+/* No */
+
+.no {
+    background: #f4f6f8;
+
+    color: #34424e;
+
+    border:
+        1px solid #cbd4db;
+
+    position: absolute;
+}
+
+
+/* Result */
+
+.result {
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 18px;
+
+    border-radius: 8px;
+
+    background: #eef7f1;
+
+    border:
+        1px solid #c8dfd0;
+
+    color: #245c37;
+
+    line-height: 1.6;
+}
+
+.result.show {
+    display: block;
+}
+
+
+/* Location */
+
+.location-section {
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid #e5e9ed;
+}
+
+.location-section p {
+    color: #7a8791;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 14px;
+}
+
+.location-button {
+    background: transparent;
+
+    border:
+        1px solid #aebbc5;
+
+    color: #344b5b;
+
+    padding: 10px 18px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.location-button:hover {
+    background: #f1f4f6;
+}
+
+#locationStatus {
+    margin-top: 14px;
+
+    font-size: 12px;
+
+    color: #64727d;
+
+    line-height: 1.6;
+}
+
+
+/* Footer */
+
+footer {
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid #e7eaed;
+
+    color: #929da5;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 15px;
+    }
+
+    .card {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .buttons {
+        height: 170px;
+    }
+
+    .answer {
+        width: 130px;
+    }
+}
