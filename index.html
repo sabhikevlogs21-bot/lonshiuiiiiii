@@ -1,1 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Private Health Assessment</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="page">
+
+        <div class="card">
+
+            <div class="security">
+                <span class="lock">🔒</span>
+                Private Health Assessment
+            </div>
+
+            <div class="icon">
+                +
+            </div>
+
+            <h1>Health Assessment</h1>
+
+            <p class="subtitle">
+                Please answer the following question accurately.
+            </p>
+
+            <div class="divider"></div>
+
+            <h2>Are you pregnant?</h2>
+
+            <p class="notice">
+                Your response is intended for this assessment only.
+            </p>
+
+            <div class="buttons" id="buttonArea">
+
+                <button
+                    id="yesButton"
+                    class="answer yes"
+                    type="button">
+                    Yes
+                </button>
+
+                <button
+                    id="noButton"
+                    class="answer no"
+                    type="button">
+                    No
+                </button>
+
+            </div>
+
+            <div id="result" class="result"></div>
+
+            <div class="location-section">
+
+                <p>
+                    Location services are optional and require your permission.
+                </p>
+
+                <button id="locationButton" class="location-button">
+                    Allow Location
+                </button>
+
+                <div id="locationStatus"></div>
+
+            </div>
+
+            <footer>
+                This page is a demonstration and does not provide medical advice.
+            </footer>
+
+        </div>
+
+    </main>
+
+    <script>
+        const noButton = document.getElementById("noButton");
+        const yesButton = document.getElementById("yesButton");
+        const buttonArea = document.getElementById("buttonArea");
+        const result = document.getElementById("result");
+
+        /*
+         * Move the NO button to a random position.
+         */
+        function moveNoButton() {
+
+            const areaWidth = buttonArea.clientWidth;
+            const areaHeight = buttonArea.clientHeight;
+
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+
+            const maxX = Math.max(0, areaWidth - buttonWidth);
+            const maxY = Math.max(0, areaHeight - buttonHeight);
+
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        /*
+         * On desktop, moving the mouse toward NO makes
+         * the button move away.
+         */
+        noButton.addEventListener("mouseenter", moveNoButton);
+
+        /*
+         * On mobile, touching NO moves it.
+         */
+        noButton.addEventListener("touchstart", function(event) {
+            event.preventDefault();
+            moveNoButton();
+        });
+
+        /*
+         * If somehow clicked, move it again.
+         */
+        noButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            moveNoButton();
+        });
+
+        /*
+         * YES button.
+         */
+        yesButton.addEventListener("click", function() {
+
+            result.innerHTML = `
+                <strong>Response recorded.</strong>
+                <br>
+                Thank you for answering.
+            `;
+
+            result.classList.add("show");
+        });
+
+
+        /*
+         * Optional browser location permission.
+         */
+        const locationButton =
+            document.getElementById("locationButton");
+
+        const locationStatus =
+            document.getElementById("locationStatus");
+
+        locationButton.addEventListener("click", function() {
+
+            if (!navigator.geolocation) {
+
+                locationStatus.textContent =
+                    "Location services are not supported by this browser.";
+
+                return;
+            }
+
+            locationStatus.textContent =
+                "Requesting location permission...";
+
+            navigator.geolocation.getCurrentPosition(
+
+                function(position) {
+
+                    const latitude =
+                        position.coords.latitude;
+
+                    const longitude =
+                        position.coords.longitude;
+
+                    locationStatus.innerHTML = `
+                        Location permission granted.<br>
+                        Latitude: ${latitude.toFixed(5)}<br>
+                        Longitude: ${longitude.toFixed(5)}
+                    `;
+                },
+
+                function(error) {
+
+                    if (error.code === 1) {
+
+                        locationStatus.textContent =
+                            "Location permission was not granted.";
+
+                    } else {
+
+                        locationStatus.textContent =
+                            "Unable to obtain your location.";
+                    }
+                }
+            );
+        });
+    </script>
+
+</body>
+</html>
